@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>JsBridgeDemo</title>
+</head>
+<body>
+<div class="container-fluid">
+    <input type="button" value="微信分享" style="margin-top: 64px" onclick="shareToWeChat({text:'风涌时贷app是上海风涌资产管理有限公司自主研发的技术平台。 平台优势： 1.低门槛，高年化收益 2.投资期限灵活 3.资金安全 4.100%本息保障计划',title:'风涌时贷',url:'http://testwww.fyosd.com',thumbImage:'icon_fyosd',type:'3'});"/>
+    <input type="button" value="获取设备信息" style="margin-top: 64px" onclick="getDevicToken()"/>
+
+</div>
+<script type="text/javascript" src='jsbridge.js'></script>
+</body>
+</html>
