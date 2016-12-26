@@ -40,7 +40,3 @@ data为JSON对象 包含的键值说明
 
 返回的数值会在对应的回调中有所体现
 
-4、js文件地址
-
-https://github.com/txinhua/JsBridge/blob/master/jsbridge.js
-
