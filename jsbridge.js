@@ -2,9 +2,11 @@ window.onerror = function (err) {
     log('window.onerror: ' + err)
 }
 
+
 function log(message, data) {
 
 }
+
 
 function connectWebViewJavascriptBridge(callback) {
     if (window.WebViewJavascriptBridge) {
@@ -27,65 +29,45 @@ connectWebViewJavascriptBridge(function (bridge) {
                                
     //app上传Jpush的RegistrationID,deviceToken&渠道标识接口
     bridge.registerHandler('uploadJRIDAndChannel', function (data, responseCallback) {
-        var responseData = {'Javascript Says': 'received'}
         //将data解析出来后传递给服务端
-        alert(data)
-        responseCallback(responseData)
+//        dataupload(data);
+        responseCallback(data)
                            
     })
-                               
-    //app上传ChannelId的接口
-    bridge.registerHandler('uploadChannel', function (data, responseCallback) {
-        var responseData = {'Javascript Says': 'received'}
-        alert(data)
-        responseCallback(responseData)
-                           
-    })
-                               
-    //app上传分先是否成功的状态接口
-    bridge.registerHandler('shareComplete', function (data, responseCallback) {
-        console.log(data);
-        //分享成功后的数据返回
-        var responseData = {'Javascript Says': 'shareCompleteInfoReceived'}
-        responseCallback(responseData)
-    })
-                               
+        
 })
 
 //js分享到微信好友或者朋友圈的接口
 function shareToWeChat(data) {
     connectWebViewJavascriptBridge(function (bridge) {
         bridge.callHandler('shareBtnDidClicked', data, function (response) {
-            console.log("JS已经发出分享和index，同时收到回调，说明OC已经收到数据");
+            console.log("JS已经发出设置用户信息请求，同时收到回调，说明App已经收到数据");
+            //response即为本次处理APP返回给H5的值
         });
     });
 }
 
-//js用于设置JPush标签的接口
-function jpushTagSet(data){
+//js告知App该设备当前登录的用户信息
+function fyUserSet(data){
     connectWebViewJavascriptBridge(function (bridge) {
-        bridge.callHandler('jpushTagSet', data, function (response) {
-            console.log("JS已经发出分享和index，同时收到回调，说明App已经收到数据");
-            });
-    });
-}
-
-//js用于获取设备推送相关token的接口
-function getDevicToken() {
-    connectWebViewJavascriptBridge(function (bridge) {
-        bridge.callHandler('deviceTokenDidClicked', {}, function (response) {
-            alert(response);
+        bridge.callHandler('fyUserSet', data, function (response) {
+            console.log("JS已经发出设置用户信息请求，同时收到回调，说明App已经收到数据");
+            //response即为本次处理APP返回给H5的值
+            dataupload(response);
         });
     });
 }
 
-//js用于获取设备推送相关token的接口
-function getChannelFunction() {
+//js告知App该设备当前登录的用户信息
+function fyCallPhone(data){
     connectWebViewJavascriptBridge(function (bridge) {
-        bridge.callHandler('askForChannel', {}, function (response) {
-            alert(response);
-        });
-    });
+                                   bridge.callHandler('fyPhoneCall', data, function (response) {
+                                                      console.log("JS已经发出设置用户信息请求，同时收到回调，说明App已经收到数据");
+                                                      //response即为本次处理APP返回给H5的值
+                                                      dataupload(response);
+                                                      });
+                                   });
 }
+
 
 

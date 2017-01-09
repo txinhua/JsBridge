@@ -4,15 +4,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src='jquery-3.1.1.min.js'></script>
+    <script type="text/javascript">
+        function dataupload(data){
+            $.post("http://192.168.1.102:8055/xphoto-api/storage/postdata",data,function(json){
+                   window.eg.alert(json);
+                   });
+        }
+    
+        </script>
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>JsBridgeDemo</title>
 </head>
 <body>
 <div class="container-fluid">
     <input type="button" value="微信分享" style="margin-top: 64px" onclick="shareToWeChat({text:'风涌时贷app是上海风涌资产管理有限公司自主研发的技术平台。 平台优势： 1.低门槛，高年化收益 2.投资期限灵活 3.资金安全 4.100%本息保障计划',title:'风涌时贷',url:'http://testwww.fyosd.com',thumbImage:'icon_fyosd',type:'3'});"/>
-    <input type="button" value="获取设备信息" style="margin-top: 64px" onclick="getDevicToken()"/>
-    <input type="button" value="获取渠道" style="margin-top: 64px" onclick="getChannelFunction()"/>
-    <input type="button" value="设置Tags" style="margin-top: 64px" onclick="jpushTagSet(['new','common','vip'])"/>
+    <input type="button" value="设置用户信息" style="margin-top: 64px" onclick="fyUserSet({action:'save',user:{userId:1203,tag:['vip','test']}})"/>
+    <input type="button" value="拨打客服电话" style="margin-top: 64px" onclick="fyCallPhone('15221882407')"/>
+    
 </div>
 <script type="text/javascript" src='jsbridge.js'></script>
 </body>
